@@ -1,22 +1,12 @@
 #include <iostream>
-
-class Deque {
-  Deque::Node(int ci, Node* n) {
-    val = ci;
-    nextNode = n;
-  }
-
-  Deque::Node(Node* n, int ci) {
-    previousNode = n;
-    val = ci;
-  }
+#include "deque.h"
   
   Deque::Deque() {
     frontOfDeque = nullptr;
     backOfDeque = nullptr;
   }
 
-  Node* Deque::getFrontOfDeque() {
+  Deque::Node* Deque::getFrontOfDeque() {
     return frontOfDeque;
   }
 
@@ -24,7 +14,7 @@ class Deque {
     frontOfDeque = n;
   }
 
-  Node* Deque::getBackOfDeque() {
+  Deque::Node* Deque::getBackOfDeque() {
     return backOfDeque;
   }
 
@@ -33,12 +23,12 @@ class Deque {
   }
 
   void Deque::push_front(int i) {
-    Node* newNode = new Node(i, frontOfDeque);
+    Node* newNode = new Node(i, frontOfDeque, nullptr);
     setFrontOfDeque(newNode);
   }
 
   void Deque::push_back(int i) {
-    Node* newNode = new Node(backOfDeque, i);
+    Node* newNode = new Node(i, nullptr, backOfDeque);
     setBackOfDeque(newNode);
   }
 
@@ -58,7 +48,7 @@ class Deque {
   int Deque::pop_back() {
     if (backOfDeque != nullptr) {
       int val = backOfDeque->val;
-      Node* ptrNewBack = backOfDeque->nextNode;
+      Node* ptrNewBack = backOfDeque->previousNode;
 
       delete backOfDeque;
       setBackOfDeque(ptrNewBack);
@@ -85,7 +75,7 @@ class Deque {
   }
 
   void Deque::remove_all() {
-    while (getFrontOfDeque() != nullptr && getBackOfDeque != nullptr) {
+    while (getFrontOfDeque() != nullptr && getBackOfDeque() != nullptr) {
       int temp = pop_front();
       int temp2 = pop_back();
     }
@@ -94,5 +84,4 @@ class Deque {
   Deque::~Deque() {
     remove_all();
   }
-};
     

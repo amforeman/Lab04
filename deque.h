@@ -16,6 +16,32 @@
  * the data structure.
  */
 class Deque {
+  private:
+  /*
+   * Struct: Node
+   * -------------------------------
+   * This struct creates Nodes, which hold the values in the Deque
+   * object.
+   */
+  struct Node {
+    int val;                //value of each element
+    Node* nextNode;         //pointer to next node in the Deque
+    Node* previousNode;      //pointer to previous node in Deque
+
+    Node(int ci, Node* n1, Node* n2) {
+      val = ci;
+      if (n1 != nullptr) {
+	nextNode = n1;
+      }
+      if (n2 != nullptr) {
+	previousNode = n2;
+      }
+    }
+  };
+  
+  Node* frontOfDeque;
+  Node* backOfDeque;
+  
  public:
   /*
    * Constructor: Deque
@@ -26,8 +52,8 @@ class Deque {
   Deque();
   /*
    * Methods: getFrontOfDeque, getBackOfDeque
-   * Usage: d.getFrontOfDeque;
-   *        d.getBackOfDeque;
+   * Usage: Node* n = d.getFrontOfDeque();
+   *        Node* n = d.getBackOfDeque();
    * -----------------------------------------
    * Returns the element at the front or back of the Deque, respectively.
    */
@@ -78,7 +104,7 @@ class Deque {
    * Deletes all elements in the Deque and frees all memory 
    * allocated on the Deque.
    */
-  int remove_all();
+  void remove_all();
   /*
    * Deconstructor: ~Deque
    * ----------------------------------------
@@ -86,23 +112,6 @@ class Deque {
    * allocated on the Deque when the Deque goes out of scope.
    */
   virtual ~Deque();
-
- private:
-  /*
-   * Struct: Node
-   * -------------------------------
-   * This struct creates Nodes, which hold the values in the Deque
-   * object.
-   */
-  struct Node {
-    int val;                //value of each element
-    Node* nextNode;         //pointer to next node in the Deque
-    Node* previousNode      //pointer to previous node in Deque
-
-    Node(int ci, Node* n);
-    Node(Node* n, int ci);
-
-    Node* frontOfDeque;
-    Node* backOfDeque;
-  };
 };
+
+#endif

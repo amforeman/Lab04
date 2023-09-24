@@ -1,3 +1,9 @@
+/*
+ * File: deque.cpp
+ * --------------------------------------------------
+ * This file implements the Deque data structure
+ */
+
 #include <iostream>
 #include "deque.h"
   
